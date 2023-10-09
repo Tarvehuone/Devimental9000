@@ -24,6 +24,7 @@ public class Enemy1 : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) <= detectionRange)
         {
             // Move towards the player.
+            detectionRange = 10f;
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * moveSpeed;
         }
@@ -31,6 +32,7 @@ public class Enemy1 : MonoBehaviour
         {
             // Stop moving when the player is out of range.
             rb.velocity = Vector2.zero;
+            detectionRange = 5f;
         }
     }
 }

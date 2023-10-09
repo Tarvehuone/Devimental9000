@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Animator anim;
+    public Transform playerGraphics;
     public float moveSpeed = 5f;
+    private Rigidbody2D rb;
+    private Vector2 movementDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -17,19 +20,50 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Get input from the player
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        movementDirection.x = Input.GetAxisRaw("Horizontal");
+        movementDirection.y = Input.GetAxisRaw("Vertical");
 
-        // Calculate the movement direction
-        Vector2 movementDirection = new Vector2(horizontalInput, verticalInput).normalized;
+        AnimatePlayer();
 
-        // Move the player
-        rb.velocity = movementDirection * moveSpeed;
-
-        // Check if there's no input and stop the player immediately
-        if (movementDirection == Vector2.zero)
+        if (movementDirection.x < 0)
         {
-            rb.velocity = Vector2.zero;
+            playerGraphics.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (movementDirection.x > 0)
+        {
+            playerGraphics.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movementDirection.normalized * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void AnimatePlayer()
+    {
+        if (movementDirection.y > 0)
+        {
+            anim.SetBool("IsWalkingUp", true);
+            anim.SetBool("IsWalking", false);
+        }
+        else if (movementDirection.y < 0)
+        {
+            anim.SetBool("IsWalkingUp", false);
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalkingUp", false);
+        }
+
+        if (movementDirection.x != 0 && movementDirection.y <= 0 || movementDirection.y < 0)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
         }
     }
 }

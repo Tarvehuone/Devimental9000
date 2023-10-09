@@ -25,5 +25,11 @@ public class Player : MonoBehaviour
 
         // Move the player
         rb.velocity = movementDirection * moveSpeed;
+
+        // Check if there's no input and stop the player immediately
+        if (movementDirection == Vector2.zero)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 }

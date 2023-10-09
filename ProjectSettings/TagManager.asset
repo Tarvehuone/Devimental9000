@@ -3,20 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - NPC
+  - Object
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - Enemy
+  - NPC
+  - Objects
+  - Foreground
   - 
   - 
   - 
@@ -38,6 +41,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 335336735
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: NPC
+    uniqueID: 1450719635
+    locked: 0
+  - name: Enemy
+    uniqueID: 2285624899
+    locked: 0
+  - name: Player
+    uniqueID: 59093145
+    locked: 0
+  - name: Foreground
+    uniqueID: 152110299
     locked: 0

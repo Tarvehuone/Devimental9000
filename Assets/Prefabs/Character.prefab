@@ -373,7 +373,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1532732486400978705
 BoxCollider2D:
@@ -570,8 +570,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.042600036, y: -0.025299966, z: 0}
-    m_Extent: {x: 1.543, y: 1.6447, z: 0}
+    m_Center: {x: -0.038150012, y: -0.028149962, z: 0}
+    m_Extent: {x: 1.5476501, y: 1.63335, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

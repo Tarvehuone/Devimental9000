@@ -211,6 +211,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8525943420727424266}
   - component: {fileID: 3929317489085171034}
+  - component: {fileID: 1795504223979234246}
+  - component: {fileID: 7977020465578264751}
   m_Layer: 0
   m_Name: ChronaMancer
   m_TagString: Untagged
@@ -246,4 +248,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b032c31ea27a3740ac5f8440359e979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 1000
+  hitpoints: 500
+--- !u!114 &1795504223979234246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870430764825596088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6b579c11eeb0e4c9b3c3a415344b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mancerTimeEffect: {fileID: 8031969897632098516, guid: b88cc1d389d0a884196e026b94f507a2, type: 3}
+  nextAttackTime: 8
+--- !u!70 &7977020465578264751
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870430764825596088}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.033482373, y: -0.14137012}
+  m_Size: {x: 0.6468054, y: 1.0595247}
+  m_Direction: 0

@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Enemy1 : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float moveSpeed = 3f; // Adjust the movement speed as needed.
     public float detectionRange = 5f; // The range at which the enemy detects the player.
     public Transform ghostGraphics;
+    public Animator ghostAnim;
+    public GameObject enemyBlast;
+    public float blastSpeed = 1;
+    public float blastRate = 2f;
+    private float nextBlastTime = 0.0f;
 
-    private Transform player; // Reference to the player's Transform.
+
+    private Transform player;
     private Rigidbody2D rb;
     private Vector2 direction;
     void Start()
@@ -23,19 +28,19 @@ public class Enemy1 : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            // Check if the player is within detection range.
-            if (Vector2.Distance(transform.position, player.position) <= detectionRange)
+            direction = (player.position - transform.position).normalized;
+            rb.velocity = direction * moveSpeed;
+
+            Vector2 blastDirection = player.position - transform.position;
+            blastDirection.Normalize();
+            float angle = Mathf.Atan2(blastDirection.y, blastDirection.x) * Mathf.Rad2Deg;
+
+            if (Vector2.Distance(transform.position, player.position) <= detectionRange && Time.time >= nextBlastTime)
             {
-                // Move towards the player.
-                detectionRange = 10f;
-                direction = (player.position - transform.position).normalized;
-                rb.velocity = direction * moveSpeed;
-            }
-            else
-            {
-                // Stop moving when the player is out of range.
-                detectionRange = 5f;
-                rb.velocity = Vector2.zero;
+                GameObject newBlast = Instantiate(enemyBlast, transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
+                newBlast.GetComponent<Rigidbody2D>().velocity = blastDirection * blastSpeed;
+
+                nextBlastTime = Time.time + blastRate;
             }
 
             if (direction.x < 0)

@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 3370165103157055618}
   - component: {fileID: 6931692095751874572}
   - component: {fileID: 1532732486400978705}
+  - component: {fileID: 4209408821674124201}
   m_Layer: 7
   m_Name: Character
   m_TagString: Player
@@ -398,6 +399,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.67174107, y: 0.53105867}
   m_EdgeRadius: 0
+--- !u!114 &4209408821674124201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050245903594758301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e3d9820cd79634fb2f94b106d951be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitpoints: 100
 --- !u!1 &2230771469603726316
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,8 +584,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-  m_Center: {x: -0.046949983, y: -0.018350005, z: 0}
-  m_Extent: {x: 1.55435, y: 1.63805, z: 0}
+    m_Center: {x: -0.042549968, y: -0.031399965, z: 0}
+    m_Extent: {x: 1.55005, y: 1.633, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

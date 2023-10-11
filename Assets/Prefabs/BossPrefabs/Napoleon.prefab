@@ -211,6 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7318683887723594368}
+  - component: {fileID: 399716346492914606}
   m_Layer: 0
   m_Name: Napoleon
   m_TagString: Untagged
@@ -235,6 +236,19 @@ Transform:
   - {fileID: 5552266529272176009}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &399716346492914606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314015227376347882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b032c31ea27a3740ac5f8440359e979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitpoints: 1000
 --- !u!1 &8002762169324083515
 GameObject:
   m_ObjectHideFlags: 0

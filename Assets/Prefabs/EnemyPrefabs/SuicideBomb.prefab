@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4279268325819806447}
   m_Layer: 0
   m_Name: SuicideBomb
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +142,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759199933008569351}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b032c31ea27a3740ac5f8440359e979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 1000
+  hitpoints: 100
 --- !u!1 &3436460395014112010
 GameObject:
   m_ObjectHideFlags: 0

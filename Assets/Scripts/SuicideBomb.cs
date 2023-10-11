@@ -19,22 +19,25 @@ public class SuicideBomb : MonoBehaviour
     {
         explosionAnim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Tag your player GameObject as "Player". 
     }
     void Update()
     {
-        if (isInRange == false)
+        if (GameObject.FindGameObjectWithTag("Player"))
         {
-            isInRange = Physics2D.OverlapCircle(transform.position, detectionRadius, whatIsPlayer);
-            direction = (player.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
-        }
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            if (isInRange == false)
+            {
+                isInRange = Physics2D.OverlapCircle(transform.position, detectionRadius, whatIsPlayer);
+                direction = (player.position - transform.position).normalized;
+                rb.velocity = direction * moveSpeed;
+            }
 
-        if (isInRange == true && playerDetected == false)
-        {
-            rb.velocity = Vector2.zero;
-            playerDetected = true;
-            Explode();
+            if (isInRange == true && playerDetected == false)
+            {
+                rb.velocity = Vector2.zero;
+                playerDetected = true;
+                Explode();
+            }
         }
     }
 

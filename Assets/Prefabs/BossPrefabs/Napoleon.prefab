@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5123211813780301000}
   m_Layer: 0
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5841829443370488797}
   m_Layer: 0
   m_Name: leftHand
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,9 +212,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7318683887723594368}
   - component: {fileID: 5635583235963625614}
+  - component: {fileID: 8003738969614649371}
+  - component: {fileID: 3926084792456599412}
   m_Layer: 0
   m_Name: Napoleon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,7 +250,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b032c31ea27a3740ac5f8440359e979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 1000
+  hitpoints: 2000
+--- !u!70 &8003738969614649371
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314015227376347882}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01903212, y: -0.118421555}
+  m_Size: {x: 1.4707801, y: 2.1481843}
+  m_Direction: 0
+--- !u!114 &3926084792456599412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314015227376347882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73b58e0d44179e478b62b9bcbf6f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8002762169324083515
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +392,7 @@ GameObject:
   - component: {fileID: 6420633212433185420}
   m_Layer: 0
   m_Name: rightHand
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

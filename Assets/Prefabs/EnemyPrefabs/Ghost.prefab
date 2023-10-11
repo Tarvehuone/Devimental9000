@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 2706806055259827516}
   - component: {fileID: 3334779403432300444}
   - component: {fileID: 6886472611208272693}
+  - component: {fileID: 4597543816060011010}
   m_Layer: 8
   m_Name: Ghost
   m_TagString: Enemy
@@ -136,6 +137,9 @@ MonoBehaviour:
   moveSpeed: 3
   detectionRange: 5
   ghostGraphics: {fileID: 5679631551184785252}
+  ghostAnim: {fileID: 4597543816060011010}
+  enemyBlast: {fileID: 7380920878220301659, guid: ffc126ae3ccef2444a0d0bc838690050, type: 3}
+  firePoint: {fileID: 0}
 --- !u!50 &2706806055259827516
 Rigidbody2D:
   serializedVersion: 4
@@ -210,7 +214,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b032c31ea27a3740ac5f8440359e979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoints: 1000
+  hitpoints: 120
+--- !u!95 &4597543816060011010
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022481898807610285}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3bd66976887a0f141940eb8daa6a5c57, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2655004629325017873
 GameObject:
   m_ObjectHideFlags: 0

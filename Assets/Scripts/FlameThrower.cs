@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class FlameThrower : MonoBehaviour
 {
-    private Animator flameAnim;
+    public GameObject fireBallPrefab;
+    public Transform firePoint;
+    public float firePower = 5f;
+    public float fireRate = 0.5f;
+    private float nextFireTime = 0.0f;
 
-    void Start()
+    void FixedUpdate()
     {
-        flameAnim = GameObject.FindGameObjectWithTag("Flame").GetComponent<Animator>();
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFireTime)
         {
-            flameAnim.SetTrigger("Shoot");
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            flameAnim.SetTrigger("Stop");
+            GameObject newFireBall = Instantiate(fireBallPrefab, firePoint.position, firePoint.rotation);
+
+            float randomSize = Random.Range(0.25f, 0.75f);
+            newFireBall.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
+
+            Rigidbody2D fireBallRB = newFireBall.GetComponent<Rigidbody2D>();
+            fireBallRB.AddForce(firePoint.right * firePower, ForceMode2D.Impulse);
+            fireBallRB.AddForce(firePoint.up * Random.Range(-3f, 3f), ForceMode2D.Impulse);
+
+            Destroy(newFireBall, 0.5f);
+
+            nextFireTime = Time.time + fireRate;
         }
     }
 }

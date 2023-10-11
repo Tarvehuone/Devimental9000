@@ -5,6 +5,7 @@ using UnityEngine;
 public class Arm : MonoBehaviour
 {
     private Transform playerTransform;
+    public GameObject flamethrower;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,24 @@ public class Arm : MonoBehaviour
 
         // Rotate the arm to face the mouse cursor
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        if (transform.localEulerAngles.z > 22.5 && transform.localEulerAngles.z < 157.5)
+        {
+            flamethrower.GetComponent<SpriteRenderer>().sortingOrder = -1;
+        }
+        else
+        {
+            flamethrower.GetComponent<SpriteRenderer>().sortingOrder = 5;
+        }
+
+        if (transform.localEulerAngles.z > 90 && transform.localEulerAngles.z < 270)
+        {
+            flamethrower.transform.localRotation = Quaternion.Euler(180, 0, 0);
+        }
+        else if (transform.localEulerAngles.z < 90 && transform.localEulerAngles.z > 0
+        || transform.localEulerAngles.z < 360 && transform.localEulerAngles.z > 270)
+        {
+            flamethrower.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }

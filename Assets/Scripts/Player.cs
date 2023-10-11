@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Animator anim;
+    public Animator bodyAnim;
+    public Animator feetAnim;
     public Transform playerGraphics;
     public float moveSpeed = 5f;
+    public Transform rotatingObject;
+    public GameObject sprayGun;
+    public GameObject flameThrower;
+
+
+    // PRIVATES
     private Rigidbody2D rb;
     private Vector2 movementDirection;
 
@@ -25,14 +32,66 @@ public class Player : MonoBehaviour
 
         AnimatePlayer();
 
-        if (movementDirection.x < 0)
+
+
+        if (Input.GetKey(KeyCode.Alpha1))
         {
-            playerGraphics.localScale = new Vector3(-1, 1, 1);
+            flameThrower.SetActive(true);
+            sprayGun.SetActive(false);
         }
-        else if (movementDirection.x > 0)
+        if (Input.GetKey(KeyCode.Alpha2))
         {
-            playerGraphics.localScale = new Vector3(1, 1, 1);
+            sprayGun.SetActive(true);
+            flameThrower.SetActive(false);
         }
+
+
+        if (movementDirection.x != 0 && bodyAnim.GetBool("IsWalkingDown") == false)
+        {
+            feetAnim.SetBool("IsRunning", true);
+        }
+        else
+        {
+            feetAnim.SetBool("IsRunning", false);
+        }
+
+        if (movementDirection.x != 0 && feetAnim.GetBool("IsLookingDown") == true)
+        {
+            feetAnim.SetBool("IsRunningDown", true);
+            feetAnim.SetBool("IsLookingDown", false);
+        }
+
+        if (movementDirection.y != 0)
+        {
+            if (bodyAnim.GetBool("IsWalkingDown") == false)
+            {
+                feetAnim.SetBool("IsRunning", true);
+            }
+            else
+            {
+                feetAnim.SetBool("IsRunning", false);
+            }
+        }
+
+        if (bodyAnim.GetBool("IsWalkingDown") == true || bodyAnim.GetBool("IsWalkingStraightUp") == true)
+        {
+            if (movementDirection.y != 0 || movementDirection.x != 0)
+            {
+                feetAnim.SetBool("IsRunningDown", true);
+                feetAnim.SetBool("IsLookingDown", false);
+            }
+            else
+            {
+                feetAnim.SetBool("IsLookingDown", true);
+                feetAnim.SetBool("IsRunningDown", false);
+            }
+        }
+        else
+        {
+            feetAnim.SetBool("IsRunningDown", false);
+            feetAnim.SetBool("IsLookingDown", false);
+        }
+
     }
 
     void FixedUpdate()
@@ -42,28 +101,76 @@ public class Player : MonoBehaviour
 
     private void AnimatePlayer()
     {
-        if (movementDirection.y > 0)
+        if ((rotatingObject.localEulerAngles.z > 337.5 && rotatingObject.localEulerAngles.z < 360)
+        || rotatingObject.localEulerAngles.z > 0 && rotatingObject.localEulerAngles.z < 22.5)
         {
-            anim.SetBool("IsWalkingUp", true);
-            anim.SetBool("IsWalking", false);
+            bodyAnim.SetBool("IsWalking", true);
+            bodyAnim.SetBool("IsWalkingUp", false);
+            bodyAnim.SetBool("IsWalkingDown", false);
+            bodyAnim.SetBool("IsWalkingStraightUp", false);
+            bodyAnim.SetBool("IsWalkingDownDiagonally", false);
+            playerGraphics.localScale = new Vector3(1, 1, 1);
         }
-        else if (movementDirection.y < 0)
+        if (rotatingObject.localEulerAngles.z > 22.5 && rotatingObject.localEulerAngles.z < 67.5)
         {
-            anim.SetBool("IsWalkingUp", false);
-            anim.SetBool("IsWalking", true);
+            bodyAnim.SetBool("IsWalking", false);
+            bodyAnim.SetBool("IsWalkingUp", true);
+            bodyAnim.SetBool("IsWalkingDown", false);
+            bodyAnim.SetBool("IsWalkingStraightUp", false);
+            bodyAnim.SetBool("IsWalkingDownDiagonally", false);
+            playerGraphics.localScale = new Vector3(1, 1, 1);
         }
-        else
+        if (rotatingObject.localEulerAngles.z > 67.5 && rotatingObject.localEulerAngles.z < 112.5)
         {
-            anim.SetBool("IsWalkingUp", false);
+            bodyAnim.SetBool("IsWalking", false);
+            bodyAnim.SetBool("IsWalkingUp", false);
+            bodyAnim.SetBool("IsWalkingDown", false);
+            bodyAnim.SetBool("IsWalkingStraightUp", true);
+            bodyAnim.SetBool("IsWalkingDownDiagonally", false);
         }
-
-        if (movementDirection.x != 0 && movementDirection.y <= 0 || movementDirection.y < 0)
+        if (rotatingObject.localEulerAngles.z > 112.5 && rotatingObject.localEulerAngles.z < 157.5)
         {
-            anim.SetBool("IsWalking", true);
+            bodyAnim.SetBool("IsWalking", false);
+            bodyAnim.SetBool("IsWalkingUp", true);
+            bodyAnim.SetBool("IsWalkingDown", false);
+            bodyAnim.SetBool("IsWalkingStraightUp", false);
+            bodyAnim.SetBool("IsWalkingDownDiagonally", false);
+            playerGraphics.localScale = new Vector3(-1, 1, 1);
         }
-        else
+        if (rotatingObject.localEulerAngles.z > 157.5 && rotatingObject.localEulerAngles.z < 202.5)
         {
-            anim.SetBool("IsWalking", false);
+            bodyAnim.SetBool("IsWalking", true);
+            bodyAnim.SetBool("IsWalkingUp", false);
+            bodyAnim.SetBool("IsWalkingDown", false);
+            bodyAnim.SetBool("IsWalkingStraightUp", false);
+            bodyAnim.SetBool("IsWalkingDownDiagonally", false);
+            playerGraphics.localScale = new Vector3(-1, 1, 1);
+        }
+        if (rotatingObject.localEulerAngles.z > 202.5 && rotatingObject.localEulerAngles.z < 247.5)
+        {
+            bodyAnim.SetBool("IsWalking", false);
+            bodyAnim.SetBool("IsWalkingUp", false);
+            bodyAnim.SetBool("IsWalkingDown", false);
+            bodyAnim.SetBool("IsWalkingStraightUp", false);
+            bodyAnim.SetBool("IsWalkingDownDiagonally", true);
+            playerGraphics.localScale = new Vector3(-1, 1, 1);
+        }
+        if (rotatingObject.localEulerAngles.z > 247.5 && rotatingObject.localEulerAngles.z < 292.5)
+        {
+            bodyAnim.SetBool("IsWalking", false);
+            bodyAnim.SetBool("IsWalkingUp", false);
+            bodyAnim.SetBool("IsWalkingDown", true);
+            bodyAnim.SetBool("IsWalkingStraightUp", false);
+            bodyAnim.SetBool("IsWalkingDownDiagonally", false);
+        }
+        if (rotatingObject.localEulerAngles.z > 292.5 && rotatingObject.localEulerAngles.z < 337.5)
+        {
+            bodyAnim.SetBool("IsWalking", false);
+            bodyAnim.SetBool("IsWalkingUp", false);
+            bodyAnim.SetBool("IsWalkingDown", false);
+            bodyAnim.SetBool("IsWalkingStraightUp", false);
+            bodyAnim.SetBool("IsWalkingDownDiagonally", true);
+            playerGraphics.localScale = new Vector3(1, 1, 1);
         }
     }
 }

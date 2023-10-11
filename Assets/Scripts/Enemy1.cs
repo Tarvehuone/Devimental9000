@@ -15,35 +15,41 @@ public class Enemy1 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Tag your player GameObject as "Player". 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        // Check if the player is within detection range.
-        if (Vector2.Distance(transform.position, player.position) <= detectionRange)
+        if (GameObject.FindGameObjectWithTag("Player"))
         {
-            // Move towards the player.
-            detectionRange = 10f;
-            direction = (player.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            // Check if the player is within detection range.
+            if (Vector2.Distance(transform.position, player.position) <= detectionRange)
+            {
+                // Move towards the player.
+                detectionRange = 10f;
+                direction = (player.position - transform.position).normalized;
+                rb.velocity = direction * moveSpeed;
+            }
+            else
+            {
+                // Stop moving when the player is out of range.
+                detectionRange = 5f;
+                rb.velocity = Vector2.zero;
+            }
+
+            if (direction.x < 0)
+            {
+                ghostGraphics.localScale = new Vector3(1, 1, 1);
+            }
+            else if (direction.x > 0)
+            {
+                ghostGraphics.localScale = new Vector3(-1, 1, 1);
+            }
         }
         else
         {
-            // Stop moving when the player is out of range.
             rb.velocity = Vector2.zero;
-            detectionRange = 5f;
-        }
-
-        if (direction.x < 0)
-        {
-            ghostGraphics.localScale = new Vector3(1, 1, 1);
-        }
-        else if (direction.x > 0)
-        {
-            ghostGraphics.localScale = new Vector3(-1, 1, 1);
         }
     }
 }

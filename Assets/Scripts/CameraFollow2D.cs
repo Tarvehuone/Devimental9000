@@ -15,7 +15,8 @@ public class CameraFollow2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Follow();
+        if (GameObject.FindGameObjectWithTag("Player"))
+            Follow();
     }
 
     void Follow()

@@ -14,6 +14,7 @@ public class SuicideBomb : MonoBehaviour
     private Vector2 direction;
     private bool isInRange = false;
     private bool playerDetected = false;
+    public int damageToPlayer = 25;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class SuicideBomb : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            collider.gameObject.GetComponent<PlayerHP>().hitpoints -= damageToPlayer;
             // DO DAMAGE TO PLAYER
         }
     }

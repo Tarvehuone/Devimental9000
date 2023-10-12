@@ -8,10 +8,11 @@ public class BossRoom : MonoBehaviour
     public GameObject bossPrefab;
     public Transform bossSpawn;
 
-    void OnEnable()
+    void Start()
     {
         door.SetActive(false);
     }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")

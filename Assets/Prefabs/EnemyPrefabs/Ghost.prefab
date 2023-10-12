@@ -222,6 +222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtAudio: {fileID: 2466573843642082663}
   hitpoints: 120
+  paintBucketPrefab: {fileID: 2243223823430447660, guid: 91da188d655ab0545a64fd5e72143585, type: 3}
+  gasCanisterPrefab: {fileID: 6975747057320836960, guid: ecdefdb48da68134aa24333fd4a82576, type: 3}
 --- !u!95 &4597543816060011010
 Animator:
   serializedVersion: 5

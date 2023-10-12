@@ -8,6 +8,7 @@ public class EnemyHP : MonoBehaviour
     public AudioSource hurtAudio;
     public int hitpoints = 1000;
     public GameObject paintBucketPrefab;
+    public GameObject gasCanisterPrefab;
 
     void OnEnable()
     {
@@ -32,10 +33,16 @@ public class EnemyHP : MonoBehaviour
         {
             deathAudio.Play();
 
+            float randomChance = Random.Range(0f, 1f);
+
             // Implement the 5% chance to drop a paint bucket
-            if (Random.Range(0f, 1f) <= 0.05f)
+            if (randomChance <= 0.05f)
             {
                 Instantiate(paintBucketPrefab, transform.position, Quaternion.identity);
+            }
+            else if (randomChance >= 0.9f)
+            {
+                Instantiate(gasCanisterPrefab, transform.position, Quaternion.identity);
             }
 
             Destroy(gameObject);

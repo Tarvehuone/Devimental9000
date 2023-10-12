@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PaintBucket : MonoBehaviour
 {
+
+    public AudioSource slurps;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class PaintBucket : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            slurps.Play();
             Destroy(gameObject);
         }
     }

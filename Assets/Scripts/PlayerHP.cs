@@ -19,14 +19,11 @@ public class PlayerHP : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
-    {
-    }
-
     void PlayerDeath()
     {
         if (hitpoints <= 0)
         {
+            GameObject.FindWithTag("Fail").GetComponent<FailManager>().DeathScreen();
             Destroy(gameObject);
         }
     }
@@ -40,8 +37,25 @@ public class PlayerHP : MonoBehaviour
         }
         if (collider.gameObject.tag == "Enemy")
         {
-            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
             hitpoints -= 5;
+            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
+            Debug.Log("Player health: " + hitpoints);
+            PlayerDeath();
+        }
+        else if (collider.gameObject.tag == "Boss")
+        {
+            hitpoints -= 20;
+            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
+            PlayerDeath();
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "EnemyBlast")
+        {
+            hitpoints -= 5;
+            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
             Debug.Log("Player health: " + hitpoints);
             PlayerDeath();
         }

@@ -16,6 +16,14 @@ public class EnemyBlast : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     void DestroyBlast()
     {
         Destroy(this.gameObject);

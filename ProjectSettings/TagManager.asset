@@ -12,6 +12,10 @@ TagManager:
   - IgnoreCollision
   - DeathAudio
   - PaintBucket
+  - NapoleonDeath
+  - Boss
+  - EnemyBlast
+  - Fail
   layers:
   - Default
   - TransparentFX

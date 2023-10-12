@@ -8,7 +8,7 @@ public class PlayerHP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        FindObjectOfType<Healthbar>().SetMaxHealth(hitpoints);
     }
 
     // Update is called once per frame 
@@ -21,6 +21,7 @@ public class PlayerHP : MonoBehaviour
     {
         if (collider.gameObject.tag == "Enemy")
         {
+            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
             hitpoints -= 5;
             Debug.Log("Player health: " + hitpoints);
             PlayerDeath();

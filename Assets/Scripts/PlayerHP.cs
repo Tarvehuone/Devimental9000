@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerHP : MonoBehaviour
 {
-    public int hitpoints = 100;
+    public int hitpointsMax = 100;
+    public int hitpoints;
     // Start is called before the first frame update
     void Start()
     {
+        hitpoints = hitpointsMax;
         FindObjectOfType<Healthbar>().SetMaxHealth(hitpoints);
     }
 
@@ -19,13 +21,6 @@ public class PlayerHP : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Enemy")
-        {
-            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
-            hitpoints -= 5;
-            Debug.Log("Player health: " + hitpoints);
-            PlayerDeath();
-        }
     }
 
     void PlayerDeath()
@@ -35,4 +30,32 @@ public class PlayerHP : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag == "PaintBucket")
+        {
+            EatPaint();
+            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
+        }
+        if (collider.gameObject.tag == "Enemy")
+        {
+            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
+            hitpoints -= 5;
+            Debug.Log("Player health: " + hitpoints);
+            PlayerDeath();
+        }
+    }
+    public void EatPaint()
+    {
+        if (hitpoints < hitpointsMax)
+        {
+            hitpoints += 10;
+            if (hitpoints > hitpointsMax)
+            {
+                hitpoints = hitpointsMax;
+            }
+        }
+    }
+
 }

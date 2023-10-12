@@ -560,6 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e3d9820cd79634fb2f94b106d951be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitpointsMax: 100
   hitpoints: 100
 --- !u!82 &2464866412133503834
 AudioSource:
@@ -723,8 +724,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.03790003, y: -0.032050014, z: 0}
-    m_Extent: {x: 1.5472, y: 1.63555, z: 0}
+    m_Center: {x: -0.04705, y: -0.0273, z: 0}
+    m_Extent: {x: 1.55195, y: 1.6352, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1034,6 +1035,8 @@ MonoBehaviour:
   firePoint: {fileID: 1272394529180738083}
   firePower: 8
   fireRate: 0.025
+  ammo: 0
+  reloadTime: 2
   flameThrowerAudio: {fileID: 7910310759085981201}
 --- !u!82 &7910310759085981201
 AudioSource:

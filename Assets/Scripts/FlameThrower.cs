@@ -11,7 +11,7 @@ public class FlameThrower : MonoBehaviour
     private float nextFireTime = 0.0f;
     private int ammoMax = 100;
     public int ammo;
-    public float reloadTime = 5f;
+    public float reloadTime = 2f;
     public AudioSource flameThrowerAudio;
 
     void Start()

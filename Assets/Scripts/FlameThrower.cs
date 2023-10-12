@@ -9,9 +9,6 @@ public class FlameThrower : MonoBehaviour
     public float firePower = 5f;
     public float fireRate = 0.5f;
     private float nextFireTime = 0.0f;
-    private int ammoMax = 100;
-    public int ammo;
-    public float reloadTime = 5f;
     public AudioSource flameThrowerAudio;
 
     void FixedUpdate()
@@ -20,7 +17,6 @@ public class FlameThrower : MonoBehaviour
         {
             if (!flameThrowerAudio.isPlaying)
                 flameThrowerAudio.Play();
-
             GameObject newFireBall = Instantiate(fireBallPrefab, firePoint.position, firePoint.rotation);
 
             float randomSize = Random.Range(0.25f, 0.75f);
@@ -34,30 +30,9 @@ public class FlameThrower : MonoBehaviour
 
             nextFireTime = Time.time + fireRate;
         }
-        else
-        {
-            Invoke("ReloadDelay", reloadTime);
-        }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             flameThrowerAudio.Stop();
-        }
-
-
-        public bool HasAmmo()
-        {
-            return ammo > 0;
-        }
-
-        public void ReloadAmmo()
-        {
-            ammo = ammoMax;
-            FindObjectOfType<Ammobar>().SetAmmo(ammo);
-        }
-
-        private void ReloadDelay()
-        {
-            ReloadAmmo();
         }
     }
 }

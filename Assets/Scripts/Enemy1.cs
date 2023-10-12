@@ -17,9 +17,12 @@ public class Enemy1 : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb;
     private Vector2 direction;
+    public AudioSource blastAudio;
+    public AudioSource ghostVoice;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        blastAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,10 @@ public class Enemy1 : MonoBehaviour
             {
                 GameObject newBlast = Instantiate(enemyBlast, transform.position, Quaternion.AngleAxis(angle, Vector3.forward));
                 newBlast.GetComponent<Rigidbody2D>().velocity = blastDirection * blastSpeed;
+
+                blastAudio.Play();
+                if (!ghostVoice.isPlaying)
+                    ghostVoice.Play();
 
                 nextBlastTime = Time.time + blastRate;
             }

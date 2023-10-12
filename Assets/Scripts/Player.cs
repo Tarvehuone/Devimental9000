@@ -9,8 +9,9 @@ public class Player : MonoBehaviour
     public Transform playerGraphics;
     public float moveSpeed = 5f;
     public Transform rotatingObject;
-    public GameObject sprayGun;
+    public GameObject paintThrower;
     public GameObject flameThrower;
+    public AudioSource walkingAudio;
 
 
     // PRIVATES
@@ -32,22 +33,16 @@ public class Player : MonoBehaviour
 
         AnimatePlayer();
 
-
-
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            flameThrower.SetActive(true);
-            sprayGun.SetActive(false);
+            flameThrower.SetActive(!flameThrower.activeSelf);
+            paintThrower.SetActive(!paintThrower.activeSelf);
         }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            sprayGun.SetActive(true);
-            flameThrower.SetActive(false);
-        }
-
 
         if (movementDirection.x != 0 && bodyAnim.GetBool("IsWalkingDown") == false)
         {
+            if (!walkingAudio.isPlaying)
+                walkingAudio.Play();
             feetAnim.SetBool("IsRunning", true);
         }
         else
@@ -61,8 +56,17 @@ public class Player : MonoBehaviour
             feetAnim.SetBool("IsLookingDown", false);
         }
 
+        if (movementDirection.x == 0 && movementDirection.y == 0)
+        {
+            if (walkingAudio.isPlaying)
+                walkingAudio.Stop();
+        }
+
         if (movementDirection.y != 0)
         {
+            if (!walkingAudio.isPlaying)
+                walkingAudio.Play();
+
             if (bodyAnim.GetBool("IsWalkingDown") == false)
             {
                 feetAnim.SetBool("IsRunning", true);

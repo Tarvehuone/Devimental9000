@@ -20,6 +20,7 @@ public class GasolineCanister : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
+            collider.gameObject.GetComponent<Player>().flameThrower.GetComponent<FlameThrower>().ammo += 100;
             Destroy(gameObject);
         }
     }

@@ -6,7 +6,7 @@ public class PaintingHP : MonoBehaviour
 {
     public int maxHealth = 150; // Maximum health of the painting
     private int currentHealth;   // Current health of the painting
-
+    private bool isBroken = false;
     void Start()
     {
         currentHealth = maxHealth; // Initialize the current health to the maximum health
@@ -22,7 +22,9 @@ public class PaintingHP : MonoBehaviour
     {
         if (collider.gameObject.tag == "Paint")
         {
-            currentHealth -= 5;
+            if (currentHealth > 0)
+                currentHealth -= 5;
+
             Debug.Log("Painting health: " + currentHealth);
             PaintingDeath();
         }
@@ -32,9 +34,12 @@ public class PaintingHP : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            GameObject.FindObjectOfType<PaintingRandomizer>().CheckPaintings(true);
+            if (isBroken == false)
+            {
+                transform.parent.parent.GetComponent<PaintingRandomizer>().CheckPaintings(true);
+            }
+            isBroken = true;
             Destroy(gameObject);
         }
     }
-
 }

@@ -11,7 +11,7 @@ public class PaintingRandomizer : MonoBehaviour
     private int randomAmount;
     public List<bool> paintingsBoolean = new List<bool>();
 
-    void OnEnable()
+    void Start()
     {
         RandomizePaintings();
     }
@@ -19,9 +19,9 @@ public class PaintingRandomizer : MonoBehaviour
     {
         randomAmount = Random.Range(3, 6);
 
-        for (int i = 0; i < paintingSpawnPoints.Length; i++)
+        while (true)
         {
-            if (usedIndex.Count > randomAmount)
+            if (usedIndex.Count >= randomAmount)
                 break;
 
             int randomSpawnPoint = Random.Range(0, paintingSpawnPoints.Length);

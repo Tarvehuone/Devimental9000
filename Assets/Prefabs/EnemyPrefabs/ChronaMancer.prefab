@@ -253,6 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtAudio: {fileID: 5407060393364458963}
   hitpoints: 350
+  paintBucketPrefab: {fileID: 2243223823430447660, guid: 91da188d655ab0545a64fd5e72143585, type: 3}
+  gasCanisterPrefab: {fileID: 6975747057320836960, guid: ecdefdb48da68134aa24333fd4a82576, type: 3}
 --- !u!114 &1795504223979234246
 MonoBehaviour:
   m_ObjectHideFlags: 0

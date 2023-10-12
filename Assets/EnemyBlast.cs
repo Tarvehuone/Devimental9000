@@ -6,10 +6,18 @@ public class EnemyBlast : MonoBehaviour
 {
     void Start()
     {
-        Destroy(gameObject, 10f);
+        Invoke("DestroyBlast", 5f);
     }
-    void OnColliderEnter2D(Collider2D collider)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag != "IgnoreCollision")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void DestroyBlast()
+    {
+        Destroy(this.gameObject);
     }
 }

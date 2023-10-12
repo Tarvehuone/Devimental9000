@@ -14,6 +14,8 @@ public class SuicideBomb : MonoBehaviour
     private Vector2 direction;
     private bool isInRange = false;
     private bool playerDetected = false;
+    public AudioSource attackAudio;
+    public AudioSource explosionAudio;
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class SuicideBomb : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").transform;
             if (isInRange == false)
             {
+
                 isInRange = Physics2D.OverlapCircle(transform.position, detectionRadius, whatIsPlayer);
                 direction = (player.position - transform.position).normalized;
                 rb.velocity = direction * moveSpeed;
@@ -34,6 +37,7 @@ public class SuicideBomb : MonoBehaviour
 
             if (isInRange == true && playerDetected == false)
             {
+                StartCoroutine(PlayAudio());
                 rb.velocity = Vector2.zero;
                 playerDetected = true;
                 Explode();
@@ -54,5 +58,12 @@ public class SuicideBomb : MonoBehaviour
         explosionAnim.SetTrigger("Exploding");
 
         Destroy(gameObject, deathTimer);
+    }
+
+    private IEnumerator PlayAudio()
+    {
+        attackAudio.Play();
+        yield return new WaitForSeconds(2f);
+        explosionAudio.Play();
     }
 }

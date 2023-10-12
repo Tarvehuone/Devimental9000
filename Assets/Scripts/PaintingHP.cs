@@ -18,7 +18,7 @@ public class PaintingHP : MonoBehaviour
         // You can add any update logic you need here
     }
 
-    public void OnCollisionEnter2D(Collision2D collider)
+    public void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Paint")
         {

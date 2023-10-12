@@ -8,6 +8,7 @@ public class PaintingRandomizer : MonoBehaviour
     public Sprite[] paintingSprites;
     public Transform[] paintingSpawnPoints;
     List<int> usedIndex = new List<int>();
+    List<GameObject> paintings = new List<GameObject>();
 
     void OnEnable()
     {
@@ -30,6 +31,7 @@ public class PaintingRandomizer : MonoBehaviour
                     paintingSpawnPoints[randomSpawnPoint].position,
                     Quaternion.identity, paintingSpawnPoints[randomSpawnPoint]);
 
+                paintings.Add(newPainting);
 
                 newPainting.GetComponent<SpriteRenderer>().sprite = paintingSprites[Random.Range(0, paintingSprites.Length)];
 

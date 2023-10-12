@@ -215,9 +215,10 @@ GameObject:
   - component: {fileID: 7977020465578264751}
   - component: {fileID: 5407060393364458963}
   - component: {fileID: 4061747090384964931}
+  - component: {fileID: 8495761596199217308}
   m_Layer: 0
   m_Name: ChronaMancer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtAudio: {fileID: 5407060393364458963}
-  hitpoints: 500
+  hitpoints: 350
 --- !u!114 &1795504223979234246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mancerTimeEffect: {fileID: 8031969897632098516, guid: b88cc1d389d0a884196e026b94f507a2, type: 3}
+  moveSpeed: 0.3
   nextAttackTime: 8
   attackAudio: {fileID: 4061747090384964931}
 --- !u!70 &7977020465578264751
@@ -296,7 +298,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.033482373, y: -0.14137012}
@@ -494,3 +496,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &8495761596199217308
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870430764825596088}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

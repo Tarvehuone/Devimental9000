@@ -32,6 +32,7 @@ public class PaintingHP : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            GameObject.FindObjectOfType<PaintingRandomizer>().CheckPaintings(true);
             Destroy(gameObject);
         }
     }

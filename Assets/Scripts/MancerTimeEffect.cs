@@ -13,7 +13,7 @@ public class MancerTimeEffect : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             Player player = collider.gameObject.GetComponent<Player>();
-            player.moveSpeed /= 2;
+            player.moveSpeed = 3;
         }
     }
 
@@ -22,7 +22,7 @@ public class MancerTimeEffect : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             Player player = collider.gameObject.GetComponent<Player>();
-            player.moveSpeed *= 2;
+            player.moveSpeed = 6;
         }
     }
 }

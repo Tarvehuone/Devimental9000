@@ -135,8 +135,15 @@ MonoBehaviour:
   maxTimeToSpawn: 10
   spawnPoint: {fileID: 2068003936922118533}
   possibleEnemies:
-  - {fileID: 1759199933008569351, guid: 0df0c8b1850d0c140b1983f4b9112c66, type: 3}
   - {fileID: 2022481898807610285, guid: ca28c0e49f435dc4e97010cbf7b5c57f, type: 3}
+  - {fileID: 2022481898807610285, guid: ca28c0e49f435dc4e97010cbf7b5c57f, type: 3}
+  - {fileID: 2022481898807610285, guid: ca28c0e49f435dc4e97010cbf7b5c57f, type: 3}
+  - {fileID: 1759199933008569351, guid: 0df0c8b1850d0c140b1983f4b9112c66, type: 3}
+  - {fileID: 1759199933008569351, guid: 0df0c8b1850d0c140b1983f4b9112c66, type: 3}
+  - {fileID: 1759199933008569351, guid: 0df0c8b1850d0c140b1983f4b9112c66, type: 3}
+  - {fileID: 1665863489856736048, guid: fb340fe00b82be94a89b7003311747ca, type: 3}
+  - {fileID: 1665863489856736048, guid: fb340fe00b82be94a89b7003311747ca, type: 3}
+  - {fileID: 8870430764825596088, guid: 7f565832626811d4c9ca3461ef1931d2, type: 3}
 --- !u!114 &2355003887226648232
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,8 +7,6 @@ public class RoomManager : MonoBehaviour
     public GameObject doors;
     public GameObject paintings;
 
-    public GameObject[] paintingsInRoom;
-
     void Awake()
     {
         paintings.SetActive(false);
@@ -21,10 +19,5 @@ public class RoomManager : MonoBehaviour
             doors.SetActive(true);
             paintings.SetActive(true);
         }
-    }
-
-    void CheckPaintingCount()
-    {
-
     }
 }

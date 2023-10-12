@@ -16,23 +16,26 @@ public class FlameThrower : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFireTime)
+        if (HasAmmo())
         {
-            if (!flameThrowerAudio.isPlaying)
-                flameThrowerAudio.Play();
+            if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFireTime)
+            {
+                if (!flameThrowerAudio.isPlaying)
+                    flameThrowerAudio.Play();
 
-            GameObject newFireBall = Instantiate(fireBallPrefab, firePoint.position, firePoint.rotation);
+                GameObject newFireBall = Instantiate(fireBallPrefab, firePoint.position, firePoint.rotation);
 
-            float randomSize = Random.Range(0.25f, 0.75f);
-            newFireBall.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
+                float randomSize = Random.Range(0.25f, 0.75f);
+                newFireBall.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
 
-            Rigidbody2D fireBallRB = newFireBall.GetComponent<Rigidbody2D>();
-            fireBallRB.AddForce(firePoint.right * firePower, ForceMode2D.Impulse);
-            fireBallRB.AddForce(firePoint.up * Random.Range(-3f, 3f), ForceMode2D.Impulse);
+                Rigidbody2D fireBallRB = newFireBall.GetComponent<Rigidbody2D>();
+                fireBallRB.AddForce(firePoint.right * firePower, ForceMode2D.Impulse);
+                fireBallRB.AddForce(firePoint.up * Random.Range(-3f, 3f), ForceMode2D.Impulse);
 
-            Destroy(newFireBall, 0.5f);
+                Destroy(newFireBall, 0.5f);
 
-            nextFireTime = Time.time + fireRate;
+                nextFireTime = Time.time + fireRate;
+            }
         }
         else
         {
@@ -53,7 +56,7 @@ public class FlameThrower : MonoBehaviour
     public void ReloadAmmo()
     {
         ammo = ammoMax;
-        FindObjectOfType<Ammobar>().SetAmmo(ammo);
+        // FindObjectOfType<Ammobar>().SetAmmo(ammo);
     }
 
     private void ReloadDelay()

@@ -9,9 +9,6 @@ TagManager:
   - Object
   - Flame
   - Paint
-  - IgnoreCollision
-  - DeathAudio
-  - PaintBucket
   layers:
   - Default
   - TransparentFX

@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class PlayerHP : MonoBehaviour
 {
-    public int hitpointsMax = 100;
-    public int hitpoints;
+    public int hitpoints = 100;
     // Start is called before the first frame update
     void Start()
     {
-        hitpoints = hitpointsMax;
         FindObjectOfType<Healthbar>().SetMaxHealth(hitpoints);
     }
 
     // Update is called once per frame 
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter2D(Collision2D collider)
@@ -37,25 +35,4 @@ public class PlayerHP : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.tag == "PaintBucket")
-        {
-            EatPaint();
-            FindObjectOfType<Healthbar>().SetHealth(hitpoints);
-        }
-    }
-    public void EatPaint()
-    {
-        if (hitpoints < hitpointsMax)
-        {
-            hitpoints += 10;
-            if (hitpoints > hitpointsMax)
-            {
-                hitpoints = hitpointsMax;
-            }
-        }
-    }
-
 }

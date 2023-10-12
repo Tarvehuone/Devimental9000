@@ -42,22 +42,22 @@ public class FlameThrower : MonoBehaviour
         {
             flameThrowerAudio.Stop();
         }
+    }
 
 
-        public bool HasAmmo()
-        {
-            return ammo > 0;
-        }
+    public bool HasAmmo()
+    {
+        return ammo > 0;
+    }
 
-        public void ReloadAmmo()
-        {
-            ammo = ammoMax;
-            FindObjectOfType<Ammobar>().SetAmmo(ammo);
-        }
+    public void ReloadAmmo()
+    {
+        ammo = ammoMax;
+        FindObjectOfType<Ammobar>().SetAmmo(ammo);
+    }
 
-        private void ReloadDelay()
-        {
-            ReloadAmmo();
-        }
+    private void ReloadDelay()
+    {
+        ReloadAmmo();
     }
 }

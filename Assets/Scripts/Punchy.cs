@@ -14,6 +14,8 @@ public class Punchy : MonoBehaviour
     private Rigidbody2D rb;
     public Animator punchyAnim;
     private Vector2 direction;
+
+    public AudioSource attackAudio;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,6 +34,8 @@ public class Punchy : MonoBehaviour
             if (Vector2.Distance(transform.position, player.position) <= detectionRange)
             {
                 punchyAnim.SetTrigger("Punch");
+                if (!attackAudio.isPlaying)
+                    attackAudio.Play();
                 rb.velocity = direction * moveSpeed / 2;
             }
 

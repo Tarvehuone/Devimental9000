@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
+    private AudioSource deathAudio;
+    public AudioSource hurtAudio;
     public int hitpoints = 1000;
-    // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        deathAudio = GameObject.FindWithTag("DeathAudio").GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Flame")
         {
+            if (!hurtAudio.isPlaying)
+                hurtAudio.Play();
             hitpoints -= 5;
             Debug.Log("Enemy health: " + hitpoints);
             EnemyDeath();
@@ -31,6 +29,7 @@ public class EnemyHP : MonoBehaviour
     {
         if (hitpoints <= 0)
         {
+            deathAudio.Play();
             Destroy(gameObject);
         }
     }

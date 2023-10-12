@@ -10,6 +10,8 @@ public class ChronaMancer : MonoBehaviour
     private float nextTimer = 0f;
     private Transform player; // Reference to the player's Transform.
 
+    public AudioSource attackAudio;
+
     void Update()
     {
         if (GameObject.FindGameObjectWithTag("Player"))
@@ -18,6 +20,7 @@ public class ChronaMancer : MonoBehaviour
 
             if (Time.time >= nextTimer)
             {
+                attackAudio.Play();
                 Instantiate(mancerTimeEffect, player.transform.position, Quaternion.identity);
                 nextTimer = Time.time + Random.Range(nextAttackTime - 1, nextAttackTime + 1);
             }

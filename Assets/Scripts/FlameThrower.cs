@@ -9,9 +9,18 @@ public class FlameThrower : MonoBehaviour
     public float firePower = 5f;
     public float fireRate = 0.5f;
     private float nextFireTime = 0.0f;
+    private int ammoMax = 100;
+    public int ammo;
+    public float reloadTime = 5f;
 
+void Start()
+{
+    ammo = ammoMax;
+}
     void FixedUpdate()
     {
+        if (HasAmmo())
+        {
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFireTime)
         {
             GameObject newFireBall = Instantiate(fireBallPrefab, firePoint.position, firePoint.rotation);
@@ -26,6 +35,29 @@ public class FlameThrower : MonoBehaviour
             Destroy(newFireBall, 0.5f);
 
             nextFireTime = Time.time + fireRate;
+
+            ammo--;
+            Debug.Log("Ammo: " + ammo);
         }
+        }
+        else
+        {
+            Invoke("ReloadDelay", reloadTime);
+        }
+    }
+
+    public bool HasAmmo()
+    {
+        return ammo > 0;
+    }
+
+    public void ReloadAmmo()
+    {
+        ammo = ammoMax;
+    }
+
+    private void ReloadDelay()
+    {
+        ReloadAmmo();
     }
 }

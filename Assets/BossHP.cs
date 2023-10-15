@@ -8,8 +8,10 @@ public class BossHP : MonoBehaviour
     private AudioSource deathAudio;
     public AudioSource hurtAudio;
     public int hitpoints = 1000;
+    private BossHPBar hpBar;
     void Start()
     {
+        hpBar = FindObjectOfType<BossHPBar>();
         deathAudio = GameObject.FindWithTag("NapoleonDeath").GetComponent<AudioSource>();
     }
     void OnTriggerEnter2D(Collider2D collider)
@@ -20,6 +22,7 @@ public class BossHP : MonoBehaviour
                 hurtAudio.Play();
 
             hitpoints -= 5;
+            hpBar.UpdateHP(hitpoints);
             Debug.Log("Boss health: " + hitpoints);
             EnemyDeath();
         }
@@ -29,9 +32,10 @@ public class BossHP : MonoBehaviour
     {
         if (hitpoints <= 0)
         {
-            deathAudio.Play();
-            Invoke("EnemyDeathTimer", 2f);
-            Destroy(gameObject);
+            if (!deathAudio.isPlaying)
+                deathAudio.Play();
+            Invoke("EnemyDeathTimer", 4f);
+            Destroy(gameObject, 4f);
         }
     }
 

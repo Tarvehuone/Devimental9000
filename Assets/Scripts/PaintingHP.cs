@@ -6,16 +6,13 @@ public class PaintingHP : MonoBehaviour
 {
     public int maxHealth = 150; // Maximum health of the painting
     private int currentHealth;   // Current health of the painting
+    public GameObject enemySpawnPoint;
     private bool isBroken = false;
+    private Animator paintingAnim;
     void Start()
     {
+        paintingAnim = GetComponent<Animator>();
         currentHealth = maxHealth; // Initialize the current health to the maximum health
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // You can add any update logic you need here
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -24,6 +21,8 @@ public class PaintingHP : MonoBehaviour
         {
             if (currentHealth > 0)
                 currentHealth -= 5;
+
+            paintingAnim.SetFloat("Health", currentHealth);
 
             Debug.Log("Painting health: " + currentHealth);
             PaintingDeath();
@@ -39,7 +38,7 @@ public class PaintingHP : MonoBehaviour
                 transform.parent.parent.GetComponent<PaintingRandomizer>().CheckPaintings(true);
             }
             isBroken = true;
-            Destroy(gameObject);
+            Destroy(enemySpawnPoint);
         }
     }
 }

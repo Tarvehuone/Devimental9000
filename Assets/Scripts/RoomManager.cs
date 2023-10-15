@@ -6,6 +6,7 @@ public class RoomManager : MonoBehaviour
 {
     public GameObject doors;
     public GameObject paintings;
+    public AudioSource doorCloseSound;
 
     void Awake()
     {
@@ -16,6 +17,7 @@ public class RoomManager : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            doorCloseSound.Play();
             doors.SetActive(true);
             paintings.SetActive(true);
         }

@@ -7,6 +7,7 @@ public class BossRoom : MonoBehaviour
     public GameObject door;
     public GameObject bossPrefab;
     public Transform bossSpawn;
+    public GameObject bossHpBar;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class BossRoom : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             door.SetActive(true);
+            bossHpBar.SetActive(true);
             Instantiate(bossPrefab, bossSpawn.position, Quaternion.identity);
         }
     }

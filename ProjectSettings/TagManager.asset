@@ -16,6 +16,7 @@ TagManager:
   - Boss
   - EnemyBlast
   - Fail
+  - LootAudio
   layers:
   - Default
   - TransparentFX

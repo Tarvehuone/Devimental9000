@@ -14,10 +14,12 @@ public class Napoleon : MonoBehaviour
     public AudioSource punchSound;
     private Rigidbody2D rb;
     private Transform player;
+    private BossHP bossHP;
     public float moveSpeed = 0.5f;
 
     void Start()
     {
+        bossHP = GetComponent<BossHP>();
         rb = GetComponent<Rigidbody2D>();
         napoAnim = GetComponent<Animator>();
         StartCoroutine(RandomAttack());
@@ -28,12 +30,23 @@ public class Napoleon : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            Vector2 direction = (player.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
+            if (bossHP.hitpoints > 0)
+            {
+                Vector2 direction = (player.position - transform.position).normalized;
+                rb.velocity = direction * moveSpeed;
+            }
         }
         else
         {
             rb.velocity = Vector2.zero;
+        }
+
+        if (bossHP.hitpoints <= 0)
+        {
+            StopCoroutine(RandomAttack());
+            StopCoroutine(HusAttack());
+            StopCoroutine(CircleAttack());
+            BossDeath();
         }
     }
 
@@ -65,9 +78,11 @@ public class Napoleon : MonoBehaviour
 
         while (true)
         {
+            if (bossHP.hitpoints <= 0)
+                break;
+
             yield return new WaitForSeconds(0.05f);
-            BlastTimer();
-            blastCount++;
+            Blast();
 
             if (blastCount == circleBlastAmount)
             {
@@ -77,8 +92,41 @@ public class Napoleon : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
 
-        StartCoroutine(RandomAttack());
+
+        if (bossHP.hitpoints > 0)
+            StartCoroutine(RandomAttack());
+        else
+            BossDeath();
     }
+
+    private IEnumerator HusAttack()
+    {
+        napoAnim.SetTrigger("HusAttack");
+
+        if (!punchSound.isPlaying)
+            punchSound.Play();
+
+        yield return new WaitForSeconds(1f);
+
+        if (bossHP.hitpoints > 0)
+            StartCoroutine(RandomAttack());
+        else
+            BossDeath();
+    }
+
+    private void Blast()
+    {
+        GameObject newBlast = Instantiate(enemyBlastPrefab, firePoint.position, firePoint.rotation);
+        newBlast.GetComponent<Rigidbody2D>().AddForce(firePoint.right * -blastPower, ForceMode2D.Impulse);
+        newBlast.transform.localScale = new Vector3(-3, 3, 3);
+        Destroy(newBlast, 10f);
+        blastCount++;
+    }
+    private void BossDeath()
+    {
+        napoAnim.SetTrigger("Death");
+    }
+
     // private IEnumerator WaveAttack()
     // {
     //     napoAnim.SetTrigger("WaveAttack");
@@ -116,23 +164,4 @@ public class Napoleon : MonoBehaviour
 
     //     StartCoroutine(RandomAttack());
     // }
-
-    private IEnumerator HusAttack()
-    {
-        napoAnim.SetTrigger("HusAttack");
-
-        if (!punchSound.isPlaying)
-            punchSound.Play();
-
-        yield return new WaitForSeconds(1f);
-
-        StartCoroutine(RandomAttack());
-    }
-
-    private void BlastTimer()
-    {
-        GameObject newBlast = Instantiate(enemyBlastPrefab, firePoint.position, firePoint.rotation);
-        newBlast.GetComponent<Rigidbody2D>().AddForce(firePoint.right * -blastPower, ForceMode2D.Impulse);
-        newBlast.transform.localScale = new Vector3(-3, 3, 3);
-    }
 }

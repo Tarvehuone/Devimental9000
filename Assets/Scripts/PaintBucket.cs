@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class PaintBucket : MonoBehaviour
 {
+    private AudioSource slurps;
+    public AudioClip slurpsClip;
 
-    public AudioSource slurps;
-    // Start is called before the first frame update
     void Start()
     {
-
+        slurps = GameObject.FindWithTag("LootAudio").GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
-            slurps.Play();
-            Destroy(gameObject);
+            slurps.PlayOneShot(slurpsClip);
+            GetComponent<SpriteRenderer>().sprite = null;
+            GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(gameObject, 1f);
         }
     }
 }

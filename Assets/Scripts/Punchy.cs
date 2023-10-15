@@ -28,7 +28,6 @@ public class Punchy : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
             direction = (player.position - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
 
             // Check if the player is within detection range.
             if (Vector2.Distance(transform.position, player.position) <= detectionRange)
@@ -37,6 +36,10 @@ public class Punchy : MonoBehaviour
                 if (!attackAudio.isPlaying)
                     attackAudio.Play();
                 rb.velocity = direction * moveSpeed / 2;
+            }
+            else
+            {
+                rb.velocity = direction * moveSpeed;
             }
 
             if (direction.x < 0)

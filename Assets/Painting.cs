@@ -9,6 +9,7 @@ public class Painting : MonoBehaviour
     public Transform spawnPoint;
     public GameObject[] possibleEnemies;
     private bool isSpawning = false;
+    public SpriteRenderer gfx;
 
     void Update()
     {
@@ -21,7 +22,10 @@ public class Painting : MonoBehaviour
     private IEnumerator SpawnEnemy()
     {
         isSpawning = true;
-        GameObject newEnemy = Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Length)], spawnPoint);
+        if (spawnPoint != null)
+        {
+            GameObject newEnemy = Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Length)], spawnPoint.position, Quaternion.identity, spawnPoint);
+        }
         yield return new WaitForSeconds(Random.Range(minTimeToSpawn, maxTimeToSpawn));
         isSpawning = false;
     }

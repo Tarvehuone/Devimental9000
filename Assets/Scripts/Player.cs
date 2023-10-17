@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public Animator feetAnim;
     public Transform playerGraphics;
     public float moveSpeed = 5f;
-    public Transform rotatingObject;
+    private Transform rotatingObject;
     public GameObject paintThrower;
     public GameObject flameThrower;
     public AudioSource walkingAudio;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rotatingObject = flameThrower.GetComponent<FlameThrower>().rotatingHand;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -37,6 +38,17 @@ public class Player : MonoBehaviour
         {
             flameThrower.SetActive(!flameThrower.activeSelf);
             paintThrower.SetActive(!paintThrower.activeSelf);
+
+            if (flameThrower.activeSelf)
+            {
+                rotatingObject = flameThrower.GetComponent<FlameThrower>().rotatingHand;
+                Debug.Log(rotatingObject);
+            }
+            else if (paintThrower.activeSelf)
+            {
+                rotatingObject = paintThrower.GetComponent<PaintThrower>().rotatingHand;
+                Debug.Log(rotatingObject);
+            }
         }
 
         if (movementDirection.x != 0 && bodyAnim.GetBool("IsWalkingDown") == false)

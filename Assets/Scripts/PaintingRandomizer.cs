@@ -32,7 +32,7 @@ public class PaintingRandomizer : MonoBehaviour
                     paintingSpawnPoints[randomSpawnPoint].position,
                     Quaternion.identity, paintingSpawnPoints[randomSpawnPoint]);
 
-                newPainting.GetComponent<SpriteRenderer>().sprite = paintingSprites[Random.Range(0, paintingSprites.Length)];
+                newPainting.GetComponent<Painting>().gfx.sprite = paintingSprites[Random.Range(0, paintingSprites.Length)];
 
                 usedIndex.Add(randomSpawnPoint);
             }

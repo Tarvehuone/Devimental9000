@@ -13,6 +13,8 @@ public class FlameThrower : MonoBehaviour
     public int ammo;
     public float reloadTime = 2f;
     public AudioSource flameThrowerAudio;
+    public AudioSource reloadAudio;
+    public Transform rotatingHand;
 
     void Start()
     {
@@ -21,13 +23,27 @@ public class FlameThrower : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            if (!flameThrowerAudio.isPlaying)
+            {
+                if (HasAmmo())
+                    flameThrowerAudio.Play();
+            }
+            if (HasAmmo() == false)
+            {
+                flameThrowerAudio.Stop();
+            }
+        }
+        else
+        {
+            flameThrowerAudio.Stop();
+        }
+
         if (HasAmmo())
         {
             if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFireTime)
             {
-                if (!flameThrowerAudio.isPlaying)
-                    flameThrowerAudio.Play();
-
                 GameObject newFireBall = Instantiate(fireBallPrefab, firePoint.position, firePoint.rotation);
 
                 float randomSize = Random.Range(0.25f, 0.75f);
@@ -48,12 +64,12 @@ public class FlameThrower : MonoBehaviour
         }
         else
         {
+            if (!reloadAudio.isPlaying)
+                reloadAudio.Play();
+
             Invoke("ReloadDelay", reloadTime);
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            flameThrowerAudio.Stop();
-        }
+
     }
 
     public bool HasAmmo()

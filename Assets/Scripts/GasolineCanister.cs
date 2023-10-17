@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class GasolineCanister : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public AudioClip pickUpSound;
+    private AudioSource lootAudio;
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        lootAudio = GameObject.FindWithTag("LootAudio").GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -21,6 +16,7 @@ public class GasolineCanister : MonoBehaviour
         if (collider.tag == "Player")
         {
             collider.gameObject.GetComponent<Player>().flameThrower.GetComponent<FlameThrower>().ammo += 100;
+            lootAudio.PlayOneShot(pickUpSound);
             Destroy(gameObject);
         }
     }

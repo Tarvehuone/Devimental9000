@@ -10,13 +10,24 @@ public class PaintThrower : MonoBehaviour
     public float fireRate = 0.5f;
     private float nextFireTime = 0.0f;
     public AudioSource paintThrowerAudio;
+    public Transform rotatingHand;
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFireTime)
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             if (!paintThrowerAudio.isPlaying)
+            {
                 paintThrowerAudio.Play();
+            }
+        }
+        else
+        {
+            paintThrowerAudio.Stop();
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFireTime)
+        {
             GameObject newPaintBall = Instantiate(paintBallPrefab, firePoint.position, firePoint.rotation);
 
             float randomSize = Random.Range(0.25f, 0.75f);

@@ -19,7 +19,7 @@ public class EnemyHP : MonoBehaviour
     {
         if (collider.gameObject.tag == "Flame")
         {
-            if (!hurtAudio.isPlaying)
+            if (!hurtAudio.isPlaying && hurtAudio.enabled)
                 hurtAudio.Play();
             hitpoints -= 5;
             Debug.Log("Enemy health: " + hitpoints);

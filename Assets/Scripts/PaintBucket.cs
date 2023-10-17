@@ -16,9 +16,7 @@ public class PaintBucket : MonoBehaviour
         if (collider.tag == "Player")
         {
             slurps.PlayOneShot(slurpsClip);
-            GetComponent<SpriteRenderer>().sprite = null;
-            GetComponent<BoxCollider2D>().enabled = false;
-            Destroy(gameObject, 1f);
+            Destroy(gameObject);
         }
     }
 }
